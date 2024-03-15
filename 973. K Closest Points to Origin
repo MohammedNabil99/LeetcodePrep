@@ -1,0 +1,21 @@
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        minHeap = []
+
+    #go through the list of points, calculate distance, and append to minHeap. Linear time O(N)
+        for x, y in points:
+            dist = (x ** 2) + (y ** 2)
+            minHeap.append([dist, x, y])
+        
+        #convert the list to a heap structure (like a tree where root node is smaller than its children nodes) This is also linear time
+        heapq.heapify(minHeap)
+        res = []
+        while k > 0:
+            dist, x, y = heapq.heappop(minHeap) #heappop time complexity is log N and since it is going until k > 0, the total time complexity is O(klogN)
+            res.append([x,y]) # add the result to res variable
+            k -= 1 #decrement count of k
+        
+        return res #answer
+
+#Time Complexity: O(klogN)
+#Space Complexity: O(1)
