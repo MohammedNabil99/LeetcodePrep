@@ -1,0 +1,17 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        #empty hash table to store elements and their indices
+        maps = {}
+
+        #iterate through the nums list
+        for i in range (len(nums)):
+            diff = target - nums[i]
+            #return the two indices if difference is in maps
+            if diff in maps:
+                return [maps[diff], i]
+            #if difference not in maps, then add the current element nums[i] to the hash table with its index as the value
+            maps[nums[i]] = i
+        
+        #if no solution found, then return empty array
+        return []
+        
