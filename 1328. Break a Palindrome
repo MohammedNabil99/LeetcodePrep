@@ -1,0 +1,17 @@
+class Solution:
+    def breakPalindrome(self, palindrome: str) -> str:
+
+        #if length is 1 or less, retun empty result
+        if len(palindrome) <= 1:
+            return ""
+            
+        #go through the first half of the list since we are only trying to find the first character that is not 'a' and can be replaced to break the palindrome
+        for i in range (len(palindrome) // 2):
+            #find the first character in the string that is not 'a' in the first half and replace it with 'a' to break the palindrome
+            if palindrome[i] != 'a':
+                return palindrome[:i] + 'a' + palindrome[i + 1: ] #going from beginning until i, replacing i with 'a', and then adding on to the string the remaining characters
+        
+        #if the first half of the string is all 'aaaa' then replace the last character with 'b' (next smallest)
+        return palindrome[:-1] + 'b'
+        
+        #test case: abttba
