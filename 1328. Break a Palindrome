@@ -15,3 +15,5 @@ class Solution:
         return palindrome[:-1] + 'b'
         
         #test case: abttba
+#Time Complexity: O(N)
+#Space Complexity: O(1)
