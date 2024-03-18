@@ -1,0 +1,19 @@
+class Solution:
+    def numPairsDivisibleBy60(self, time: List[int]) -> int:
+        res = 0
+        count = {}
+
+        for i in time:
+            div = i % 60
+            complement = (60 - div) % 60 #calculate the difference remainder
+
+            #check if complement is in count, increment result
+            if complement in count:
+                res += count[complement]
+            
+            #update the count for the current remainder
+            count[div] = count.get(div, 0) + 1
+        
+        return res
+            
+        
