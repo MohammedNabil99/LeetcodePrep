@@ -1,0 +1,28 @@
+class Solution:
+    def trap(self, height: List[int]) -> int:
+
+        #two pointer approach
+        #left is set to first value and right is set to last value
+        l, r = 0, len(height) - 1
+        leftMax, rightMax = height[l], height[r]
+        res = 0
+        #continue the loop while left index is less than right index
+        while l < r:
+            #move the left pointer when leftMax is less than rightMax
+            if leftMax < rightMax:
+                l += 1 #move through the list from left
+                leftMax = max(leftMax, height[l]) #update leftMax
+                res += leftMax - height[l] #calculate how much water can be held at position l
+            
+            #move the right pointer when rightMax is less than leftMax
+            else:
+                r -= 1 #move through the list from right
+                rightMax = max(rightMax, height[r]) #update rightMax
+                res += rightMax - height[r] #calculate how much water can be held at position r
+            
+        return res #result is the total of all the values.
+
+        #Time Complexity: O(N)
+        #Space Complexity: O(1)
+
+        
