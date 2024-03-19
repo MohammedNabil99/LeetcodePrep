@@ -1,0 +1,23 @@
+https://leetcode.com/problems/reaching-points/description/
+
+class Solution:
+    def reachingPoints(self, sx: int, sy: int, tx: int, ty: int) -> bool:
+        if sx == sy == tx == ty:
+            return True
+        
+        
+        while (tx >= sx and ty >= sy):
+            #Check to see if we have reached end
+            if tx == sx:
+                return (ty-sy) % tx == 0
+            if ty == sy:
+                return (tx-sx) % ty == 0
+            
+            #step
+            if ty > tx:
+                ty = ty % tx
+            else:
+                tx = tx % ty
+        
+        return False
+        
