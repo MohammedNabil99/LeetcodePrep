@@ -1,0 +1,22 @@
+https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/description/
+
+class Solution:
+    def removeDuplicates(self, s: str, k: int) -> str:
+        stack = [] #[char, count]
+
+        for c in s:
+            if stack and stack[-1][0] == c: #check to see if first character in stack is same as c
+                stack[-1][1] += 1   #increment count of character by 1
+            else:
+                stack.append([c, 1]) #if the character is not there or stack is empty, add the character to the stack and set the count of it to 1
+            
+            if stack[-1][1] == k: #if count of top character is equal to k then pop it
+                stack.pop()
+
+
+        res = ""
+        #store in res the remaining characters in stack and output the result as a string
+        for char, count in stack:
+            res += char * count
+        
+        return res
