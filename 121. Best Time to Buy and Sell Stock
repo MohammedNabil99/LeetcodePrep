@@ -1,0 +1,23 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        #if prices array is empty, maxProfit would be 0
+        if len(prices) == 0:
+            return 0
+        
+        #set maxProfit initially to 0
+        maxProfit = 0
+        #set initial minPrice to the first value in the array
+        minPrice = prices[0]
+
+        #Go through the prices array using a for loop
+        for i in range (len(prices)):
+            #update minPrice if prices[i] is lower than current minPrice
+            if prices[i] < minPrice:
+                minPrice = prices[i]
+            #set maxProfit to maximum of current maxProfit and calculated maxProfit using current index value
+            maxProfit = max(maxProfit, prices[i] - minPrice)
+        
+        return maxProfit
+
+#Time Complexity: O(N)
+#Space Complexity: O(1)
