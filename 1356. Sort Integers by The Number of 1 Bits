@@ -1,0 +1,25 @@
+class Solution:
+    def sortByBits(self, arr: List[int]) -> List[int]:
+        def countOnes(num):
+            count = 0
+            while num:
+                #when both num and num-1 is 1 then count of 1 gets incremented
+                num &= (num - 1)
+                count += 1
+            return count
+        
+        oneList = []
+        for n in arr:
+            ones = countOnes(n)
+            oneList.append((ones, n)) #keep track of count of 1s and value of n
+        
+        heapq.heapify(oneList) #convert the oneList to a heap
+        res = []
+
+        while oneList:
+            res.append(heapq.heappop(oneList)[1]) #pop from lowest to highest to get ascending order
+        
+        return res
+
+#Time Complexity: O(NlogN)
+#Space Complexity: O(N)
