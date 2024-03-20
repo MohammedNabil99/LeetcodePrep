@@ -1,0 +1,26 @@
+class Solution:
+    def countSubstrings(self, s: str) -> int:
+        if len(s) == 0:
+            return 0
+        
+        res = 0
+        
+        for i in range (len(s)):
+            l = r = i
+            res += self.palindrome(s, l, r)
+        
+            l = i
+            r = i + 1
+            res += self.palindrome(s, l, r)
+        return res
+        
+    #check to see if current index has same characters on its left and right side, if so, append res by 1. Make sure left and right pointers are within bound.
+    def palindrome(self, s, l, r):
+        res = 0
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            res += 1
+            l -= 1
+            r += 1
+
+#Time Complexity: O(N^2)
+#Space Complexity: O(1)
