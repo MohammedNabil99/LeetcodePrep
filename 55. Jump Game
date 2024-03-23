@@ -1,0 +1,14 @@
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        goal = len(nums) - 1
+
+        #iterate backwards starting from second to last index and ending at the first index(0), step count is going back by 1
+        for i in range (len(nums) - 2, -1, -1):
+            if i + nums[i] >= goal:
+                goal = i
+        
+        return goal == 0
+
+        #Time Complexity: O(N)
+        #Space Complexity: O(1)
+        
